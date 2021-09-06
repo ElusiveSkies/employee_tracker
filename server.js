@@ -84,7 +84,7 @@ const promptUser = () => {
 showDepartments = () => {
   const deptSql = `SELECT * FROM department`;
 
-  console.log("Showing All Departments");
+  console.log("---Showing All Departments---");
 
   connection.query(deptSql, (err, res) => {
     if (err) throw err;
@@ -95,10 +95,10 @@ showDepartments = () => {
 
 // Displays role table
 showRoles = () => {
-  const rolesSql = `SELECT role.id, role.title, department.name AS department
+  const rolesSql = `SELECT role.id, role.title, role.salary, department.name AS department
   FROM role
   INNER JOIN department ON role.department_id = department.id`;
-  console.log("Showing All Roles");
+  console.log("---Showing All Roles---");
 
   connection.query(rolesSql, (err, res) => {
     if (err) throw err;
@@ -115,7 +115,7 @@ showEmployees = () => {
   LEFT JOIN role ON employees.role_id = role.id
   LEFT JOIN department ON role.department_id = department.id
   LEFT JOIN employees manager ON employees.manager_id = manager.id`;
-  console.log("Showing All Employees");
+  console.log("---Showing All Employees---");
 
   connection.query(empSql, (err, res) => {
     if (err) throw err;
@@ -203,7 +203,7 @@ addEmployee = () => {
     if (err) throw err;
     roleChoices = res.map(({ id, title }) => ({ name: title, value: id }));
 
-    // Connection to colleted id, first name, and last name from employees table
+    // Connection to collect id, first name, and last name from employees table
     const empMangersSql = `SELECT * FROM employees`;
 
     connection.query(empMangersSql, (err, res) => {
@@ -360,7 +360,7 @@ updateEmpManager = () => {
 
 // Function to display a table of employees by department
 employeesByDept = () => {
-  // searches for all departments
+  // Searches for all departments
   const deptSql = `SELECT * from department`;
 
   connection.query(deptSql, (err, res) => {
@@ -377,7 +377,7 @@ employeesByDept = () => {
         },
       ])
       .then(({ department }) => {
-        //Sets up to create table for positions with the same department id
+        // Sets up to create table for positions with the same department id
         const empDept = `SELECT employees.id, employees.first_name, employees.last_name, role.title, department.name AS department, role.salary,
         CONCAT (manager.first_name, " ", manager.last_name) AS manager
         FROM employees
@@ -393,4 +393,43 @@ employeesByDept = () => {
         });
       });
   });
+};
+
+// Function to delete an employee
+removeEmployee = () => {
+  // Connection to collect id, first name, and last name from employees table
+  const empSql = `SELECT * FROM employees`;
+
+  connection.query(empSql, (err, res) => {
+    if (err) throw err;
+    empChoices = res.map(({ id, first_name, last_name }) => ({
+      name: first_name + " " + last_name,
+      value: id,
+    }));
+    // Determines which employee is to be removed
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          name: "empToRemove",
+          message: "Which employee would you like to remove?",
+          choices: empChoices,
+        },
+      ])
+      .then(({ empToRemove }) => {
+        console.log(empToRemove);
+        // Deletes desired employee by id
+        const removeEmp = `DELETE FROM employees WHERE id = ${empToRemove}`;
+
+        connection.query(removeEmp, (err, res) => {
+          if (err) throw err;
+        });
+        // Shows updated employees table
+        showEmployees();
+      });
+  });
+};
+
+exit = () => {
+  connection.end();
 };
