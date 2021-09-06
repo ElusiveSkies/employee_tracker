@@ -48,7 +48,7 @@ Entering the following in the integrated terminal to begin:
 **node server.js**
 
 Video of Usage
-![Video of Usage](.img/emp_tracker.gif)
+![Video of Usage](./img/emp_tracker.gif)
 
 ## License
 
