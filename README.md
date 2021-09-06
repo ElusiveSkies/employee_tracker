@@ -1,7 +1,8 @@
 # employee_tracker
 
 Employee Tracker
-[[Repository Link](https://github.com/ElusiveSkies/employee_tracker)]
+
+[Repository Link](https://github.com/ElusiveSkies/employee_tracker)
 
 ## Table of Contents
 
@@ -56,6 +57,6 @@ MIT
 
 ## Questions
 
-[[Contact me](mailto:elusiveskies@gmail.com)]
+[Contact me](mailto:elusiveskies@gmail.com)
 
-[[Elusiveskies](https://www.github.com/Elusiveskies)]
+[Elusiveskies](https://www.github.com/Elusiveskies)
