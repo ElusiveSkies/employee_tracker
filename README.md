@@ -36,12 +36,17 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Installation
 
-From the integrated terminal the user will type:
+- From the integrated terminal the user will type:
+
 
   **npm i**
 
-Followed by pressing enter.
+- Followed by pressing enter.
 This will result in the installation of *inquirer*, *MySQL2*, and *console.table*
+
+- Rename the file:
+
+"*.env.EXAMPLE*" to "*.env*" and add user credentials before use.
 
 ## Usage
 
