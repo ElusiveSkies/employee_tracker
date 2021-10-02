@@ -7,6 +7,7 @@ Employee Tracker
 ## Table of Contents
 
 - [Installation](#Installation)
+- [Technology](#Technology)
 - [Usage](#Usage)
 - [License](#License)
 - [Questions](#Questions)
@@ -33,6 +34,12 @@ THEN I am prompted to enter the employee’s first name, last name, role, and ma
 WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
+
+## Technology
+
+- Javascript
+- MySQL2
+- Inquirer
 
 ## Installation
 
